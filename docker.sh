@@ -32,4 +32,6 @@ then
         docker run -d --name con_2 docker/getting-started
         x="$(docker ps -q -f status=running | wc -l)"
         echo -e "${BOLD}${GREEN}${x} New Containers Created....${ENDCOLOR}"
+else
+	echo 'ERROR.........'
 fi
