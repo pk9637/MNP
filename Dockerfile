@@ -1,3 +1,3 @@
-FROM ubuntu:20.04
-RUN apt-get update -y
-RUN apt-get install git -y
+FROM nginx
+RUN apt-get update && apt-get upgrade -y 
+COPY index.html /usr/share/nginx/html
