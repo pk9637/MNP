@@ -1,5 +1,10 @@
-FROM nginx
-RUN echo "<h1>Hello Prasanta</h1>" > /usr/share/nginx/html/index.html
-RUN echo "<h3>System IP : `hostname -I`</h3>" >> /usr/share/nginx/html/index.html
-RUN echo "<h3>Version is : `cat /sys/class/dmi/id/product_version`</h3>" >> /usr/share/nginx/html/index.html
-RUN echo "<h3>Date is : `date`</h3>" >> /usr/share/nginx/html/index.html
+FROM centos:7
+RUN yum install -y httpd \
+	zip \
+	unzip
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page288/startup.zip /var/www/html/
+WORKDIR /var/www/html/
+RUN unzip startup.zip
+RUN cp -rvf startup-website-template/* .
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+EXPOSE 80
